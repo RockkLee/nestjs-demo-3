@@ -1,0 +1,15 @@
+{
+    "compilerOptions": {
+         // Enables support for project references
+        "composite": true, // Required for project references
+        "module": "commonjs", // Specify the module system of the compiled output JS files
+        "target": "ES6", // Specify the version of the output compiled JS files
+        "declaration": true, //Generate declaration files
+        "declarationMap": true // Generate source maps for declaration files.
+    },
+    "references": [
+        { "path": "./app" },
+        { "path": "./domain" },
+        { "path": "./infra" }
+    ]
+}

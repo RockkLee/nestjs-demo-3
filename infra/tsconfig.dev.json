@@ -1,0 +1,11 @@
+// For ts-node and tsconfig-paths in dev environment
+{
+  "extends": "./tsconfig.json",
+  "compilerOptions": {
+    "paths": {
+      "@infra/*": ["./*"],
+      "@app/*": ["../../app/src/*"],
+      "@domain/*": ["../../domain/src/*"]
+    },
+  },
+}

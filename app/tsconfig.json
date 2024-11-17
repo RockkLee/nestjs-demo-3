@@ -1,0 +1,38 @@
+{
+  "extends": "../tsconfig.json", // Inherits settings from the root tsconfig.json file
+  "compilerOptions": {
+    "emitDecoratorMetadata": true, // Enables metadata reflection for decorators, needed by NestJS for dependency injection
+    "experimentalDecorators": true, // Enables the use of decorators, a feature used extensively by NestJS
+    // Allow writing import syntax like this `import React from "react";` rather than `import * as React from "react";`
+    "allowSyntheticDefaultImports": true,
+    "outDir": "../dist/app/src", // Specifies the output directory for compiled files
+    "rootDir": "./src", // Specifies the root directory of input source files for compiling TS files to JS files
+    "tsBuildInfoFile": "../dist/app/tsconfig.tsbuildinfo",
+    ///////////////////////////////
+    // The map of absolute imported paths:
+    // - For type aliases: Maps the paths in TS files to the compiled JS files in the 'dist' directory (after compiling TS files to JS files, then running the JS files).
+    // - For ts-node: Maps the paths directly when running TS files without compilation.
+    "baseUrl": ".",
+    "paths": {
+      "@app/*": ["./src/*"],
+      "@domain/*": ["../domain/src/*"]
+    },
+    ///////////////////////////////
+    "noEmit": false, // Enable/Disable code emission, i.e., allows TypeScript to generate output files
+    // "strictNullChecks": false, // Enable/Disable strict null checks
+    // "noImplicitAny": false, // Enable/Disable error reporting for variables typed as `any`
+    // "strictBindCallApply": false, // Enable/Disable strict checking of function arguments, i.e., `bind`, `call`, and `apply`
+    // "forceConsistentCasingInFileNames": false, // Enable/Disable consistent casing of filenames between imports and file system
+    // "noFallthroughCasesInSwitch": false 
+  },
+  "include": ["src/**/*"],
+  ///////////////////////////////
+  // TypeScript will ensure these referenced projects are compiled first, and their outputs (e.g., .d.ts files) 
+  // are used when compiling this project.
+  // This is part of TypeScript's Project References feature, enabling incremental builds, proper dependency 
+  // management, and enforcing clear module boundaries in multi-project setups (e.g., monorepos).
+  "references": [
+    { "path": "../domain" }
+  ]
+  ///////////////////////////////
+}
